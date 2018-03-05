@@ -70,7 +70,12 @@ boolean is_pal(int a[6]) {
 //--------------------------------------------------
 char ask_for_command() {
 	char res = ' ';
-    res= my_get_char();
+	boolean goodChar=False;
+	while(goodChar!=True){
+        res= my_get_char();
+        if(res=='d' || res == 'a' || res == 'x' || res == 'w')
+            goodChar=True;
+	}
 	return res;
 }
 
@@ -149,7 +154,7 @@ void user_game_palindrome(int pal_num) {
     int a[6];
     initialise_array(a, pal_num);
     boolean win = False;
-    int k=0;
+    int k=gen_num(0,6);
     int* p=&k;
     int nm=0;
     print_status(a, p, nm);
@@ -172,12 +177,12 @@ void user_game_palindrome(int pal_num) {
         printf("New game? [Y/n]\n");
         char endG=my_get_char();
             if(endG=='Y' || endG=='y'){
-                for(int i=0;i<6;i++)
+                for(int i=0;i<6;i++){
                     a[i]=gen_num(0,9);
                     k=0;
                     nm=0;
                     print_status(a, p, nm);
-                    resp=True;
+                    resp=True;}
             }
             else if(endG=='N' || endG=='n'){
                 endGame=True;
